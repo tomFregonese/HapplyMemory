@@ -13,6 +13,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/todos">Todos</RouterLink>
       </nav>
     </div>
   </header>
@@ -38,11 +39,11 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+nav a {
   color: var(--color-text);
 }
 
-nav a.router-link-exact-active:hover {
+nav a:hover {
   background-color: transparent;
 }
 
