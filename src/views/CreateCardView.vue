@@ -1,7 +1,11 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <main>
-  </main>
+  <h1> Create a card </h1>
 </template>
+
+<style scoped>
+
+</style>
