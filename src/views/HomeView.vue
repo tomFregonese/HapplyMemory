@@ -1,5 +1,12 @@
 <script setup lang="ts">
   import router from '@/router'
+  import { onMounted, defineEmits } from 'vue'
+
+  const emit = defineEmits(['title'])
+
+  onMounted(() => {
+    emit('title', 'Welcome to HapplyMemory :)')
+  })
 
   let revision = localStorage.getItem('revision');
   if (revision) {
@@ -9,20 +16,17 @@
     }
   }
 
-  function startRevision() {
-    let revision: {started: boolean; startTime: number} = {
-        started: true,
-        startTime: new Date().getTime()
-    }
-    localStorage.setItem('revision', JSON.stringify(revision));
-
-    router.push('/revision')
-  }
 </script>
 
 <template>
   <main>
-    <h1> Welcome to HapplyMemory :) </h1>
-    <button @click="startRevision">Start revision</button>
+
+    <button @click="router.push('select-revision')">Start revision</button>
+
+    <button @click="router.push('/categories')">Categories</button>
   </main>
 </template>
+
+<style scoped>
+
+</style>

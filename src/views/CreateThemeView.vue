@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { onMounted, defineEmits } from 'vue'
+
+const emit = defineEmits(['title'])
+
+onMounted(() => {
+  emit('title', 'Create a theme')
+})
+
 function submitForm() {
   console.log('submitForm') //TODO : implement
 }
@@ -6,7 +14,6 @@ function submitForm() {
 
 <template>
   <main>
-    <h1>Create a new theme</h1>
     <form>
       <label for="themeName">Theme name</label>
       <input type="text" id="themeName" placeholder="Type a name..." @keyup.enter="submitForm"/>

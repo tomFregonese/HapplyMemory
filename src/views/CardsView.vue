@@ -1,17 +1,13 @@
-<template>
-  <label for="showAll">See all cards</label>
-  <input type="checkbox" id="showAll" v-model="seeAll" />
-  <br />
-  <input type="text" name="newCard" placeholder="New card" id="newCard" v-model="cardDescription" @keyup.enter="createACard" />
-  <button type="button" @click="createACard">Ajouter</button>
-  <br />
-  <TodoList :showAll="seeAll"></TodoList>
-  <button type="button" @click="persist">Sauvegarder</button>
-</template>
 <script setup lang="ts">
-import { ref, type Ref, onMounted } from 'vue'
-import TodoList from '../components/CardList.vue'
+import { ref, type Ref, onMounted, defineEmits } from 'vue'
 import { useCardStore } from '@/stores/cards'
+import router from '@/router'
+
+const emit = defineEmits(['title'])
+
+onMounted(() => {
+  emit('title', 'Cards')
+})
 
 const seeAll: Ref<boolean> = ref(true)
 const cardDescription: Ref<string> = ref('')
@@ -21,10 +17,6 @@ const cardStore = useCardStore()
 function createACard() {
   cardStore.createCard(cardDescription.value)
   cardDescription.value = ''
-}
-
-function persist() {
-  window.localStorage.setItem('todos', JSON.stringify(cardStore.cardList))
 }
 
 function load() {
@@ -38,3 +30,13 @@ onMounted(() => {
   load()
 })
 </script>
+
+<template>
+  <main>
+    <button @click="router.push('/create-card')">New card</button>
+  </main>
+</template>
+
+<style>
+
+</style>

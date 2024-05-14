@@ -40,6 +40,11 @@ const router = createRouter({
       component: () => import('../views/CreateCardView.vue')
     },
     {
+      path: '/select-revision',
+      name: 'Select a revision',
+      component: () => import('../views/SelectRevisionView.vue')
+    },
+    {
       path: '/revision',
       name: 'Revision',
       component: () => import('../views/RevisionView.vue')
