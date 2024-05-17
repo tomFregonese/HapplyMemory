@@ -11,14 +11,13 @@ onMounted(() => {
   emit('title', 'Categories')
 })
 
+let dataFromStorage = localStorage.getItem('data')
 let categories : Category[] = []
-if (localStorage.getItem('data')) {
-  let data : Data = JSON.parse(localStorage.getItem('data')!)
-  console.log(data)
+if (dataFromStorage) {
+  let data : Data = JSON.parse(dataFromStorage).data
   for (let category of data.categories) {
     categories.push(category)
   }
-  console.log(categories)
 
 }
 
