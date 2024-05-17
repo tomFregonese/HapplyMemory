@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 
 function openTheme() {
-  router.push(`/themes/${props.id}`)
+  router.push(`/theme/${props.id}`)
 
 }
 
@@ -24,7 +24,7 @@ function openTheme() {
 
 <style scoped>
 div {
-  width: 85%;
+  width: 80%;
   margin: 0.25em auto;
   padding: 1em 2em;
   border-radius: 5px;

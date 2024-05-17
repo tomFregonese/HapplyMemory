@@ -80,14 +80,14 @@ main {
 button {
   background-color: #4CAF50; /* Couleur de fond */
   color: white; /* Couleur du texte */
-  padding: 15px 32px;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 1em;
+  margin: 0.5em 0.25em ;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 1em;
   border: none;
 }
 

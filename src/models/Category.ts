@@ -1,7 +1,7 @@
 import type { Theme } from '@/models/Theme'
 
 export interface Category {
-  id: string;
+  id: number;
   title: string;
   description: string;
   themes: Theme[];

@@ -1,7 +1,7 @@
 import type { Card } from '@/models/Card'
 
 export interface Theme {
-  id: string;
+  id: number;
   title: string;
   description: string;
   cards: Card[]
