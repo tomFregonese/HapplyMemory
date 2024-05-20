@@ -2,6 +2,7 @@
 import { onMounted, defineEmits, ref } from 'vue'
 import type { Data } from '@/models/Data'
 import type { Category } from '@/models/Category'
+import Back from '@/components/BackItem.vue'
 
 const emit = defineEmits(['title'])
 
@@ -40,6 +41,7 @@ const createCategory = () => {
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 
       <button type="submit">Create Category</button>
+      <Back text="Cancel" />
     </form>
   </main>
 </template>

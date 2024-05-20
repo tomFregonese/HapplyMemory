@@ -33,7 +33,7 @@ div {
 
 @media (prefers-color-scheme: dark) {
   div {
-    background-color: black;
+    background-color: var(--vt-c-black-mute);
   }
 }
 

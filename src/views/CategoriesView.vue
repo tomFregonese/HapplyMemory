@@ -4,6 +4,7 @@ import router from '@/router'
 import CategoryItem from '@/components/CategoryItem.vue'
 import type { Category } from '@/models/Category'
 import type { Data } from '@/models/Data'
+import Back from '@/components/BackItem.vue'
 
 const emit = defineEmits(['title'])
 
@@ -30,6 +31,7 @@ if (dataFromStorage) {
                   :title="category.title" :description="category.description"/>
 
     <button @click="router.push('/create-category')">New category</button>
+    <Back />
   </main>
 </template>
 
