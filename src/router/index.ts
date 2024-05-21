@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/CreateCategoryView.vue')
     },
     {
-      path: '/themes/:id',
+      path: '/themes/:categoryId',
       name: 'Themes',
       component: () => import('../views/ThemesView.vue')
     },
