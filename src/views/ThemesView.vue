@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { onMounted, defineEmits, defineProps } from 'vue'
+import { onMounted, defineEmits } from 'vue'
 import router from '@/router'
 import ThemeItem from '@/components/ThemeItem.vue'
 import type { Theme } from '@/models/Theme'
 import Back from '@/components/BackItem.vue'
 import type { Category } from '@/models/Category'
 import type { Data } from '@/models/Data'
+import { useRoute } from 'vue-router'
 const emit = defineEmits(['title'])
 
 onMounted(() => {
   emit('title', `Themes of ${currentCategory.title}`)
 })
 
-const props = defineProps<{
-  categoryId: number
-}>()
+const route = useRoute()
+const categoryId : number = Number(route.params.categoryId)
 
 let dataFromStorage = localStorage.getItem('data')
 let categories : Category[] = []
@@ -25,7 +25,7 @@ if (dataFromStorage) {
   }
 }
 
-let currentCategory : Category = categories.find(category => category.id === props.categoryId)! ;
+let currentCategory : Category = categories.find(category => category.id === categoryId)! ;
 
 let themesList : Theme[] = currentCategory.themes || [] ;
 
