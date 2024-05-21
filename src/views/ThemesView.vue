@@ -4,25 +4,30 @@ import router from '@/router'
 import ThemeItem from '@/components/ThemeItem.vue'
 import type { Theme } from '@/models/Theme'
 import Back from '@/components/BackItem.vue'
+import type { Category } from '@/models/Category'
+import type { Data } from '@/models/Data'
 const emit = defineEmits(['title'])
 
 onMounted(() => {
-  emit('title', `Themes of ${props.parentCategory}`)
+  emit('title', `Themes of ${currentCategory.title}`)
 })
 
 const props = defineProps<{
-  parentCategory: string
-  title: string
-  description: string
-  id: number
-  themes: Theme[]
+  categoryId: number
 }>()
 
-let themesList : Theme[] = props.themes
+let dataFromStorage = localStorage.getItem('data')
+let categories : Category[] = []
+if (dataFromStorage) {
+  let data : Data = JSON.parse(dataFromStorage).data
+  for (let category of data.categories) {
+    categories.push(category)
+  }
+}
 
+let currentCategory : Category = categories.find(category => category.id === props.categoryId)! ;
 
-
-
+let themesList : Theme[] = currentCategory.themes || [] ;
 
 </script>
 
