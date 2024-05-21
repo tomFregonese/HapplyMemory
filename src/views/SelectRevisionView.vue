@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, defineEmits } from 'vue'
 import router from '@/router'
+import Back from '@/components/BackItem.vue'
 
 const emit = defineEmits(['title'])
 
@@ -22,7 +23,8 @@ function startRevision() {
 
 <template>
   <main>
-  <button @click="startRevision">Start revision</button>
+    <button @click="startRevision">Start revision</button>
+    <Back />
   </main>
 </template>
 

@@ -3,6 +3,7 @@ import { onMounted, defineEmits, defineProps } from 'vue'
 import router from '@/router'
 import ThemeItem from '@/components/ThemeItem.vue'
 import type { Theme } from '@/models/Theme'
+import Back from '@/components/BackItem.vue'
 const emit = defineEmits(['title'])
 
 onMounted(() => {
@@ -30,6 +31,7 @@ let themesList : Theme[] = props.themes
     <ThemeItem v-for="theme in themesList" :key="theme.id" :id="theme.id" :title="theme.title"
                   :description="theme.description"  />
     <button @click="router.push('/create-theme')">New theme</button>
+    <Back />
   </main>
 </template>
 

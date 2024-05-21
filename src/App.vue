@@ -37,6 +37,59 @@ header {
 }
 
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  background-color: var(--vt-c-light-green);
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  margin: 0.5em 0.25em ;
+  cursor: pointer;
+  border-radius: 1em;
+  border: none;
+
+  :hover {
+    background-color: #45a049;
+  }
+  :active {
+    background-color: #3e8e41;
+  }
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  input, textarea {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    padding: 1em 1em;
+    margin: 0.15em 0.25em;
+    font-size: 1em;
+    border-radius: 1em;
+    border: 2px solid var(--vt-c-light-green);
+
+    :hover {
+      border-color: #45a049;
+    }
+
+  }
+
+}
+
+
 footer {
   position: fixed;
   bottom: 1em;
@@ -67,33 +120,5 @@ footer {
     }
   }
 }
-
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-button {
-  background-color: #4CAF50; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  padding: 1em 2em;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1em;
-  margin: 0.5em 0.25em ;
-  cursor: pointer;
-  border-radius: 1em;
-  border: none;
-}
-
-button:hover {
-  background-color: #45a049; /* Changement de la couleur de fond au survol */
-}
-
 
 </style>
