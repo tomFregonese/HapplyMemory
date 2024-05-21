@@ -9,8 +9,7 @@ const props = defineProps<{
 }>()
 
 function openTheme() {
-  router.push(`/themes/${props.id}`)
-
+  router.push({ name: 'Themes', params: { categoryId: props.id } })
 }
 
 </script>
