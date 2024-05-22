@@ -3,6 +3,7 @@ import { onMounted, defineEmits, ref } from 'vue'
 import type { Data } from '@/models/Data'
 import type { Category } from '@/models/Category'
 import Back from '@/components/BackItem.vue'
+import router from '@/router'
 
 const emit = defineEmits(['title'])
 
@@ -10,10 +11,14 @@ onMounted(() => {
   emit('title', 'Create a category')
 })
 
+function isFormValid() {
+  return title.value.trim() !== '' && description.value.trim() !== '';
+}
+
 let title = ref('')
 let description = ref('')
 
-const createCategory = () => {
+function createCategory() {
   let dataFromStorage = localStorage.getItem('data')
   let data : Data;
   if (dataFromStorage) {
@@ -29,18 +34,20 @@ const createCategory = () => {
   }
   data.categories.push(newCategory)
   localStorage.setItem('data', JSON.stringify({data: data}))
+
+  router.push('/categories')
 }
 
 </script>
 
 <template>
   <main>
-    <form @submit.prevent="createCategory">
+    <form>
       <input id="title" placeholder="Title" v-model="title" type="text" required>
 
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 
-      <button type="submit">Create Category</button>
+      <button :disabled="!isFormValid()" @click="createCategory()">Create Category</button>
       <Back text="Cancel" />
     </form>
   </main>
