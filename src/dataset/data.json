@@ -2,12 +2,12 @@
   "data": {
     "categories": [
       {
-        "id": "1",
+        "id": 1,
         "title": "Cars",
         "description": "This category is about cars",
         "themes": [
           {
-            "id": "1",
+            "id": 1,
             "title": "Mechanics",
             "description": "This theme is about mechanics in cars",
             "cards": [
@@ -27,7 +27,7 @@
             ]
           },
           {
-            "id": "2",
+            "id": 2,
             "title": "Design",
             "description": "This theme is about design in cars",
             "cards": [
@@ -49,12 +49,12 @@
         ]
       },
       {
-        "id": "2",
+        "id": 2,
         "title": "Audi",
         "description": "This category is about Audi cars",
         "themes": [
             {
-                "id": "3",
+                "id": 3,
                 "title": "Audi R8",
                 "description": "This theme is about Audi R8",
                 "cards": [
@@ -74,7 +74,7 @@
                 ]
             },
             {
-                "id": "4",
+                "id": 4,
                 "title": "Audi TT",
                 "description": "This theme is about Audi TT",
                 "cards": [
