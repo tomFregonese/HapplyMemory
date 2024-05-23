@@ -35,7 +35,8 @@ let themesList : Theme[] = currentCategory.themes || [] ;
   <main>
     <ThemeItem v-for="theme in themesList" :key="theme.id" :id="theme.id" :title="theme.title"
                   :description="theme.description"  />
-    <button @click="router.push('/create-theme')">New theme</button>
+    <button @click="router.push({name: 'Create_a_theme', params: { categoryId: currentCategory.id} })">New
+      theme</button>
     <Back />
   </main>
 </template>

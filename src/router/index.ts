@@ -25,8 +25,8 @@ const router = createRouter({
       component: () => import('../views/ThemesView.vue')
     },
     {
-      path: '/create-theme',
-      name: 'create a theme',
+      path: '/create-theme/:categoryId',
+      name: 'Create_a_theme',
       component: () => import('../views/CreateThemeView.vue')
     },
     {
