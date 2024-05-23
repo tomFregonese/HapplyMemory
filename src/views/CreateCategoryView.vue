@@ -18,7 +18,7 @@ function isFormValid() {
 let title = ref('')
 let description = ref('')
 
-function createCategory() {
+function createCategory(): void {
   let dataFromStorage = localStorage.getItem('data')
   let data : Data;
   if (dataFromStorage) {
@@ -48,7 +48,7 @@ function createCategory() {
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 
       <button :disabled="!isFormValid()" @click="createCategory()">Create Category</button>
-      <Back text="Cancel" />
+      <Back text="Cancel" where-to-go="/categories" />
     </form>
   </main>
 </template>

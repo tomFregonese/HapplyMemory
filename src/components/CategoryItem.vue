@@ -9,11 +9,11 @@ const props = defineProps<{
   id: number
 }>()
 
-function openTheme() {
+function openTheme(): void {
   router.push({ name: 'Themes', params: { categoryId: props.id } })
 }
 
-function deleteCategory() {
+function deleteCategory(): void {
   let dataFromStorage = localStorage.getItem('data')
   if (dataFromStorage) {
     let data: Data = JSON.parse(dataFromStorage).data

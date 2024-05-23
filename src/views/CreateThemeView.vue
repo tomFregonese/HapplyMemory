@@ -4,6 +4,7 @@ import Back from '@/components/BackItem.vue'
 import type { Data } from '@/models/Data'
 import router from '@/router'
 import { useRoute } from 'vue-router'
+import type { Category } from '@/models/Category'
 
 const emit = defineEmits(['title'])
 
@@ -21,7 +22,7 @@ function isFormValid() {
 let title = ref('')
 let description = ref('')
 
-function createTheme() {
+function createTheme(): void {
   let dataFromStorage = localStorage.getItem('data')
   let data : Data;
   if (dataFromStorage) {
@@ -34,7 +35,7 @@ function createTheme() {
 
   if (category) {
     category.themes.push({
-      id: (category.themes.length + 1),
+      id: (generateThemeId(data, category)),
       title: title.value,
       description: description.value,
       cards: [],
@@ -43,7 +44,25 @@ function createTheme() {
 
     router.push({ name: 'Themes', params: { categoryId: categoryId } })
   }
+}
 
+function generateThemeId(data: Data, currentCategory: Category): number {
+  let id = currentCategory.themes.length + 1
+  while (themeIdExists(data, id)) {
+    id++
+  }
+  return id
+}
+
+function themeIdExists(data: Data, id: number): boolean {
+    for (let category of data.categories) {
+      for (let theme of category.themes) {
+        if (theme.id === id) {
+          return true
+      }
+    }
+  }
+  return false
 }
 
 </script>
