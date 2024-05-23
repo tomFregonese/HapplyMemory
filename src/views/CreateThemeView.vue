@@ -2,7 +2,6 @@
 import { onMounted, defineEmits, ref } from 'vue'
 import Back from '@/components/BackItem.vue'
 import type { Data } from '@/models/Data'
-import type { Category } from '@/models/Category'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 
