@@ -16,7 +16,9 @@ const updateTitle = (newTitle: string) => {
     <h1>{{ title }}</h1>
   </header>
 
-  <RouterView @title="updateTitle" />
+  <body>
+    <RouterView @title="updateTitle" />
+  </body>
 
   <footer>
       <nav>
@@ -34,15 +36,22 @@ header {
   padding: 1rem 0;
   left: 0; right: 0;
   text-align: center;
+  height: 15%;
 }
 
 
 main {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 button {
@@ -100,6 +109,8 @@ footer {
 
   left: 0;
   text-align: center;
+
+  height: 10%;
 
   nav {
     width: 100%;
