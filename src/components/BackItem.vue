@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const props = withDefaults(defineProps<{ text?: string, whereToGo?: string }>(), {
   text: 'Back',
-  whereToGo: '/',
 })
 
 function goBack() {
