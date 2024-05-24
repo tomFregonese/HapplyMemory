@@ -9,15 +9,19 @@ const props = defineProps<{
   id: number
 }>()
 
-function openCategory(): void {
-  router.push({ name: 'Themes', params: { categoryId: props.id } })
-}
-
-function deleteCategory(): void {
+function deleteCard(): void {
   let dataFromStorage = localStorage.getItem('data')
   if (dataFromStorage) {
     let data: Data = JSON.parse(dataFromStorage).data
-    data.categories = data.categories.filter(category => category.id !== props.id)
+    for (let category of data.categories) {
+      for (let theme of category.themes) {
+        let cardIndex = theme.cards.findIndex(card => card.id === props.id)
+        if (cardIndex !== -1) {
+          theme.cards.splice(cardIndex, 1)
+          break
+        }
+      }
+    }
     localStorage.setItem('data', JSON.stringify({ data }))
     router.go(0)
   }
@@ -26,16 +30,16 @@ function deleteCategory(): void {
 </script>
 
 <template>
-  <div @click="openCategory()">
+  <div>
     <h2>{{ props.title }}</h2>
     <p>{{ props.description }}</p>
-    <img @click.stop="deleteCategory()" src="../assets/trash-can-regular.svg" alt="Delete">
+    <img @click.stop="deleteCard()" src="../assets/trash-can-regular.svg" alt="Delete">
   </div>
 </template>
 
 <style scoped>
 div {
-  width: 85%;
+  width: 80%;
   margin: 0.25em auto;
   padding: 1em 2em;
   border-radius: 5px;
@@ -49,8 +53,7 @@ img {
 
 @media (prefers-color-scheme: dark) {
   div {
-    background-color: var(--vt-c-black-mute);
+    background-color: black;
   }
 }
-
 </style>

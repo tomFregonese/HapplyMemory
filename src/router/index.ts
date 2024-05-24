@@ -30,13 +30,13 @@ const router = createRouter({
       component: () => import('../views/CreateThemeView.vue')
     },
     {
-      path: '/cards',
+      path: '/cards/:themeId',
       name: 'Cards',
       component: () => import('../views/CardsView.vue')
     },
     {
-      path: '/create-card',
-      name: 'Create a card',
+      path: '/create-card/:themeId',
+      name: 'Create_a_card',
       component: () => import('../views/CreateCardView.vue')
     },
     {
