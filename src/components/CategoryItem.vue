@@ -4,9 +4,10 @@ import router from '@/router'
 import type { Data } from '@/models/Data'
 
 const props = defineProps<{
-  title: string
-  description: string
-  id: number
+  title: string,
+  description: string,
+  id: number,
+  revision?: boolean,
 }>()
 
 function openCategory(): void {
@@ -29,7 +30,7 @@ function deleteCategory(): void {
   <div @click="openCategory()">
     <h2>{{ props.title }}</h2>
     <p>{{ props.description }}</p>
-    <img @click.stop="deleteCategory()" src="../assets/trash-can-regular.svg" alt="Delete">
+    <img v-if="!revision" @click.stop="deleteCategory()" src="../assets/trash-can-regular.svg" alt="Delete">
   </div>
 </template>
 
