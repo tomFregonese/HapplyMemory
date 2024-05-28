@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import router from '@/router'
   import { onMounted, defineEmits } from 'vue'
+  import { isRevisionStarted } from '@/services/revisionService'
 
   const emit = defineEmits(['title'])
 
@@ -8,13 +9,9 @@
     emit('title', 'Welcome to HapplyMemory :)')
   })
 
-  let revisionStarted = localStorage.getItem('revisionStarted');
-  if (revisionStarted) {
-    let parsedRevision = JSON.parse(revisionStarted);
-    if (parsedRevision.startTime && new Date().getTime() - parsedRevision.startTime < 900000) {
-      router.push('/revision');
-    }
-  }
+if (isRevisionStarted()) {
+  router.push('revision');
+}
 
 </script>
 
