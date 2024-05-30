@@ -37,7 +37,7 @@ const selectCategory = (category: Category) => {
     <CategoryItem v-for="category in categories" :key="category.id" @click.stop="selectCategory(category)" :id="category.id"
                   :title="category.title" :description="category.description" :revision="true"/>
     <!--<button @click="startRevision">Start revision</button>-->
-    <Back />
+    <Back where-to-go="Home" />
   </main>
 </template>
 
