@@ -48,7 +48,7 @@ function createCategory(): void {
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 
       <button :disabled="!isFormValid()" @click="createCategory()">Create Category</button>
-      <Back text="Cancel" where-to-go="/categories" />
+      <Back text="Cancel" where-to-go="Categories" />
     </form>
   </main>
 </template>

@@ -31,7 +31,8 @@ let currentTheme : Theme = themes.find(theme => theme.id === themeId)! ;
 
 let cardsList : Card[] = currentTheme.cards || [] ;
 
-function goBack(): string {
+
+function goBack(): number {
   let categoryId: number | null = null;
   if (dataFromStorage) {
     let data : Data = JSON.parse(dataFromStorage).data
@@ -47,8 +48,9 @@ function goBack(): string {
       }
     }
   }
-  return `/themes/${categoryId}`
+  return Number(categoryId);
 }
+const categoryId = goBack();
 
 </script>
 
@@ -58,7 +60,7 @@ function goBack(): string {
                   :description="card.description"  />
     <button @click="router.push({name: 'Create_a_card', params: { themeId: currentTheme.id} })">New
       card</button>
-    <Back :where-to-go="goBack()"/>
+    <Back where-to-go="Themes" :category-id="categoryId"/>
   </main>
 </template>
 

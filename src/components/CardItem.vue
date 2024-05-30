@@ -27,10 +27,29 @@ function deleteCard(): void {
   }
 }
 
+function modifyCard(): void {
+  let dataFromStorage = localStorage.getItem('data')
+  let themeId : number | null = null;
+  if (dataFromStorage) {
+    let data: Data = JSON.parse(dataFromStorage).data
+    for (let category of data.categories) {
+      for (let theme of category.themes) {
+        let card = theme.cards.find(card => card.id === props.id)
+        if (card) {
+          localStorage.setItem('cardToUpdate', JSON.stringify(card))
+          themeId = theme.id
+          break
+        }
+      }
+    }
+  }
+  router.push({ name: 'Create_a_card', params: { themeId: themeId } })
+}
+
 </script>
 
 <template>
-  <div>
+  <div @click="modifyCard()">
     <h2>{{ props.title }}</h2>
     <p>{{ props.description }}</p>
     <img @click.stop="deleteCard()" src="../assets/trash-can-regular.svg" alt="Delete">
@@ -53,7 +72,7 @@ img {
 
 @media (prefers-color-scheme: dark) {
   div {
-    background-color: black;
+    background-color: var(--vt-c-black-mute);
   }
 }
 </style>

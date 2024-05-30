@@ -5,6 +5,8 @@ import { useRoute } from 'vue-router'
 import type { Data } from '@/models/Data'
 import router from '@/router'
 import type { Theme } from '@/models/Theme'
+import { modifyingCard, removeCard } from '@/services/modifyService'
+import type { Card } from '@/models/Card'
 
 const emit = defineEmits(['title'])
 
@@ -21,6 +23,35 @@ function isFormValid() {
 
 let title = ref('')
 let description = ref('')
+
+let cardToUpdate: Card
+
+if (modifyingCard()) {
+  cardToUpdate = JSON.parse(localStorage.getItem('cardToUpdate')!)
+  title.value = cardToUpdate.title
+  description.value = cardToUpdate.description
+  removeCard(cardToUpdate.id)
+  localStorage.removeItem('cardToUpdate')
+}
+
+function redoModifiedCard() {
+  if (cardToUpdate) {
+    let dataFromStorage = localStorage.getItem('data')
+    if (dataFromStorage) {
+      let data: Data = JSON.parse(dataFromStorage).data
+      for (let category of data.categories) {
+        for (let theme of category.themes) {
+          if (theme.id === themeId) {
+            theme.cards.push(cardToUpdate)
+            break
+          }
+        }
+      }
+      localStorage.setItem('data', JSON.stringify({ data }))
+    }
+  }
+}
+
 
 function createCard(): void {
   let dataFromStorage = localStorage.getItem('data')
@@ -82,8 +113,8 @@ function cardIdExists(data: Data, id: number): boolean {
 
       <textarea id="description" placeholder="Answer" v-model="description"/>
 
-      <button :disabled="!isFormValid()" @click="createCard()">Create Category</button>
-      <Back text="Cancel" />
+      <button :disabled="!isFormValid()" @click="createCard()">Create Card</button>
+      <Back @click="redoModifiedCard" text="Cancel" where-to-go="Cards" :param="themeId" />
     </form>
   </main>
 </template>

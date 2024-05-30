@@ -37,7 +37,7 @@ let themesList : Theme[] = currentCategory.themes || [] ;
                   :description="theme.description"  />
     <button @click="router.push({name: 'Create_a_theme', params: { categoryId: currentCategory.id} })">New
       theme</button>
-    <Back where-to-go="/categories"/>
+    <Back where-to-go="Categories"/>
   </main>
 </template>
 

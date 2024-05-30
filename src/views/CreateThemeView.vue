@@ -74,8 +74,8 @@ function themeIdExists(data: Data, id: number): boolean {
 
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 
-      <button :disabled="!isFormValid()" @click="createTheme()">Create Category</button>
-      <Back text="Cancel" />
+      <button :disabled="!isFormValid()" @click="createTheme()">Create Theme</button>
+      <Back text="Cancel" where-to-go="Themes" :category-id="categoryId"/>
     </form>
   </main>
 </template>
