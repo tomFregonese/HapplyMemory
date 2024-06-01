@@ -9,7 +9,7 @@ import CategoryItem from '@/components/CategoryItem.vue'
 const emit = defineEmits(['title'])
 
 onMounted(() => {
-  emit('title', 'Select Revision')
+  emit('title', 'Select a category to revise')
 })
 
 let dataFromStorage = localStorage.getItem('data')
@@ -21,13 +21,9 @@ if (dataFromStorage) {
   }
 }
 
-const selectCategory = (category: Category) => {
-  let revisionStarted = {
-    selectedCategory: category,
-    startTime: new Date().getTime()
-  }
-  localStorage.setItem('revisionStarted', JSON.stringify(revisionStarted))
-  router.push('/revision')
+function selectCategory(category: Category) {
+  localStorage.setItem('categoryRevision', JSON.stringify(category))
+  router.push('/select-theme-revision')
 }
 
 </script>
@@ -36,7 +32,6 @@ const selectCategory = (category: Category) => {
   <main>
     <CategoryItem v-for="category in categories" :key="category.id" @click.stop="selectCategory(category)" :id="category.id"
                   :title="category.title" :description="category.description" :revision="true"/>
-    <!--<button @click="startRevision">Start revision</button>-->
     <Back where-to-go="Home" />
   </main>
 </template>

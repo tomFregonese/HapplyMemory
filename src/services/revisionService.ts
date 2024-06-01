@@ -1,5 +1,3 @@
-
-
 export function isRevisionStarted() : boolean {
   const revisionStarted = localStorage.getItem('revisionStarted');
   if (revisionStarted) {

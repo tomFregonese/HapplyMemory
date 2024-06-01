@@ -7,6 +7,7 @@ const props = defineProps<{
   title: string
   description: string
   id: number
+  revision?: boolean,
 }>()
 
 function openTheme(): void {
@@ -35,7 +36,7 @@ function deleteTheme(): void {
   <div @click="openTheme()">
     <h2>{{ props.title }}</h2>
     <p>{{ props.description }}</p>
-    <img @click.stop="deleteTheme()" src="../assets/trash-can-regular.svg" alt="Delete">
+    <img v-if="!revision" @click.stop="deleteTheme()" src="../assets/trash-can-regular.svg" alt="Delete">
   </div>
 </template>
 
