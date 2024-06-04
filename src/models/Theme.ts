@@ -1,8 +1,5 @@
 import type { Card } from '@/models/Card'
 
-export interface Theme {
-  id: number;
-  title: string;
-  description: string;
+export interface Theme extends  CommonInterface {
   cards: Card[]
 }

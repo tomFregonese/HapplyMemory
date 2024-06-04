@@ -1,7 +1,4 @@
-export interface Card {
-  id: number
-  title: string
-  description: string
-  completed: boolean
+export interface Card extends CommonInterface {
   completedAt?: Date
+  level: number
 }
