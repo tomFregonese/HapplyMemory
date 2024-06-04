@@ -27,7 +27,7 @@ function createCategory(): void {
     data = { categories: [] }
   }
   let newCategory : Category = {
-    id: (data.categories.length + 1),
+    id: generateCategoryId(data),
     title: title.value,
     description: description.value,
     themes: []
@@ -36,6 +36,23 @@ function createCategory(): void {
   localStorage.setItem('data', JSON.stringify({data: data}))
 
   router.push('/categories')
+}
+
+function generateCategoryId(data: Data): number {
+  let id = data.categories.length + 1
+  while (categoryIdExists(data, id)) {
+    id++
+  }
+  return id
+}
+
+function categoryIdExists(data: Data, id: number): boolean {
+    for (let category of data.categories) {
+      if (category.id === id) {
+        return true
+      }
+    }
+    return false
 }
 
 </script>
