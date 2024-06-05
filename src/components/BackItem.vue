@@ -3,16 +3,12 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const props =
-  withDefaults(defineProps<{ text?: string, whereToGo?: string, categoryId?: number, themeId?: number }>(), {
+  withDefaults(defineProps<{ text?: string, whereToGo?: string, categoryId?: number }>(), {
   text: 'Back',
 })
 function goBack() {
   if (props.whereToGo) {
-    if (props.categoryId) {
       router.push({ name: props.whereToGo, params: { categoryId: props.categoryId } })
-    } else {
-      router.push({ name: props.whereToGo, params: { categoryId: props.categoryId } })
-    }
   } else
   router.back()
 }

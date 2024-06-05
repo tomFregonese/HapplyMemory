@@ -75,7 +75,7 @@ function createCard(): void {
       id: (generateCardId(data, theme)),
       title: title.value,
       description: description.value,
-      completed: false,
+      level: 1,
     })
     localStorage.setItem('data', JSON.stringify({data: data}))
 
