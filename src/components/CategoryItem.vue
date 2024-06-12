@@ -36,7 +36,7 @@ function deleteCategory(): void {
 
 <style scoped>
 div {
-  width: 85%;
+  width: 80vw;
   margin: 0.25em auto;
   padding: 1em 2em;
   border-radius: 5px;

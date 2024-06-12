@@ -42,7 +42,7 @@ function deleteTheme(): void {
 
 <style scoped>
 div {
-  width: 80%;
+  width: 80vw;
   margin: 0.25em auto;
   padding: 1em 2em;
   border-radius: 5px;

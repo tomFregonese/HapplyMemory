@@ -7,6 +7,8 @@ const props = defineProps<{
   title: string
   description: string
   id: number
+  revision?: boolean
+  displayAnswer?: boolean
 }>()
 
 function deleteCard(): void {
@@ -28,41 +30,49 @@ function deleteCard(): void {
 }
 
 function modifyCard(): void {
-  let dataFromStorage = localStorage.getItem('data')
-  let themeId : number | null = null;
-  if (dataFromStorage) {
-    let data: Data = JSON.parse(dataFromStorage).data
-    for (let category of data.categories) {
-      for (let theme of category.themes) {
-        let card = theme.cards.find(card => card.id === props.id)
-        if (card) {
-          localStorage.setItem('cardToUpdate', JSON.stringify(card))
-          themeId = theme.id
-          break
+  if (!props.revision) {
+    let dataFromStorage = localStorage.getItem('data')
+    let themeId: number | null = null;
+    if (dataFromStorage) {
+      let data: Data = JSON.parse(dataFromStorage).data
+      for (let category of data.categories) {
+        for (let theme of category.themes) {
+          let card = theme.cards.find(card => card.id === props.id)
+          if (card) {
+            localStorage.setItem('cardToUpdate', JSON.stringify(card))
+            themeId = theme.id
+            break
+          }
         }
       }
     }
+    router.push({ name: 'Create_a_card', params: { themeId: themeId } })
   }
-  router.push({ name: 'Create_a_card', params: { themeId: themeId } })
 }
 
 </script>
 
 <template>
   <div @click="modifyCard()">
-    <h2>{{ props.title }}</h2>
-    <p>{{ props.description }}</p>
-    <img @click.stop="deleteCard()" src="../assets/trash-can-regular.svg" alt="Delete">
+    <h2 v-if="!displayAnswer">{{ props.title }}</h2>
+    <p v-if="displayAnswer">{{ props.description }}</p>
+    <img v-if="!revision"  @click.stop="deleteCard()" src="../assets/trash-can-regular.svg" alt="Delete">
   </div>
 </template>
 
 <style scoped>
 div {
-  width: 80%;
+  width: 50vw;
+  height: 70vw;
   margin: 0.25em auto;
   padding: 1em 2em;
   border-radius: 5px;
   background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 img {

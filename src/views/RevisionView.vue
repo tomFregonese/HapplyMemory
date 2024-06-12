@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, defineEmits } from 'vue'
+import { onMounted, defineEmits, ref, type Ref } from 'vue'
 import router from '@/router'
 import { isRevisionStarted } from '@/services/revisionService'
 import type { Card } from '@/models/Card'
@@ -8,6 +8,8 @@ import type { Category } from '@/models/Category'
 import { LEVELS } from '@/models/Levels'
 import BackItem from '@/components/BackItem.vue'
 import type { Data } from '@/models/Data'
+import CardYesNoSelector from '@/components/cardYesNoSelector.vue'
+import CardItem from '@/components/CardItem.vue'
 
 const emit = defineEmits(['title'])
 
@@ -21,9 +23,9 @@ if (!isRevisionStarted()) {
 
 const revision = JSON.parse(localStorage.getItem('revisionStarted')!);
 const dataFromLocalStorage: Data = JSON.parse(localStorage.getItem('data')!).data;
-console.log(dataFromLocalStorage)
-let cardsToRevise: Card[];
-
+let displayAnswer = ref(false);
+let cardsToRevise: Ref<Card[]> = ref([]);
+let noCardToReviseAnymore: Ref<boolean> = ref(false);
 
 function getCardsFromCategory(category: Category): Card[] {
   let cards: Card[] = []
@@ -39,18 +41,17 @@ function getCardsFromTheme(theme: Theme): Card[] {
 }
 
 if ('selectedTheme' in revision) { //If the revision is based on a theme
-  cardsToRevise = getCardsFromTheme(revision.selectedTheme)
+  cardsToRevise.value = getCardsFromTheme(revision.selectedTheme)
 } else { //If the revision is based on a category
-  cardsToRevise = getCardsFromCategory(revision.selectedCategory)
+  cardsToRevise.value = getCardsFromCategory(revision.selectedCategory)
 }
-const cardsToReviseBeforeFilter: Card[] = cardsToRevise
-cardsToRevise = []
+const cardsToReviseBeforeFilter: Card[] = cardsToRevise.value
+cardsToRevise.value = []
 for (const card of cardsToReviseBeforeFilter) {
   if (shouldReviseCard(card)) {
-      cardsToRevise.push(cardsToReviseBeforeFilter.find((c: Card) => c.id == card.id)!);
+      cardsToRevise.value.push(cardsToReviseBeforeFilter.find((c: Card) => c.id == card.id)!);
   }
 }
-console.log(cardsToRevise)
 
 function getCardById(cardId: number): Card {
   const notFoundCard: Card = {
@@ -87,27 +88,44 @@ function cancelRevision(): void {
   localStorage.removeItem('revisionStarted')
 }
 
-/*function updateCard(cardId: number, levelIncrease: boolean): void {
-  let updatingDataFromLocalStorage: Data = JSON.parse(localStorage.getItem('data')!);
+function updateCard(levelIncrease: boolean): void {
+  let updatingDataFromLocalStorage: Data = JSON.parse(localStorage.getItem('data')!).data;
+  const cardId: number = cardsToRevise.value[0].id
   updatingDataFromLocalStorage.categories.forEach((category: Category) => {
     category.themes.forEach((theme: Theme) => {
       theme.cards.forEach((card: Card) => {
         if (card.id === cardId) {
-          levelIncrease? card.level++ : card.level = 0
+          levelIncrease? card.level++ : card.level = 1
           card.completedAt = new Date()
         }
       })
     })
   })
-  localStorage.setItem('data', JSON.stringify(updatingDataFromLocalStorage))
-}*/
+  localStorage.setItem('data', JSON.stringify({ data: updatingDataFromLocalStorage }));
+  cardsToRevise.value.shift();
+  revealAnswer()
+  if (cardsToRevise.value.length == 0) {
+    noCardToReviseAnymore.value = true;
+    cancelRevision()
+  }
+}
 
+function revealAnswer(): void {
+  displayAnswer.value = !displayAnswer.value
+}
 
 </script>
 
 <template>
   <main>
-    <BackItem @click="cancelRevision" where-to-go="Home" />
+    <p v-if="noCardToReviseAnymore">There is no card anymore, yoohooo !</p>
+    <CardItem v-if="!noCardToReviseAnymore" :id="cardsToRevise[0].id" :title="cardsToRevise[0].title"
+              :description="cardsToRevise[0].description" :revision="true"
+              :display-answer="displayAnswer" />
+    <button v-if="!displayAnswer && !noCardToReviseAnymore" @click="revealAnswer">Reveal answer</button>
+    <card-yes-no-selector v-if="displayAnswer && !noCardToReviseAnymore" @answer="updateCard" />
+    <BackItem v-if="!noCardToReviseAnymore" text="Cancel revision" @click="cancelRevision" where-to-go="Home" />
+    <BackItem v-if="noCardToReviseAnymore" text="Return home" where-to-go="Home" />
   </main>
 </template>
 
