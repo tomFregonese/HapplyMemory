@@ -12,47 +12,47 @@ const router = createRouter({
     {
       path: '/categories',
       name: 'Categories',
-      component: () => import('../views/CategoriesView.vue')
+      component: () => import('@/views/categories-pages/CategoriesView.vue')
     },
     {
       path: '/create-category',
       name: 'Create a category',
-      component: () => import('../views/CreateCategoryView.vue')
+      component: () => import('@/views/categories-pages/CreateCategoryView.vue')
     },
     {
       path: '/themes/:categoryId',
       name: 'Themes',
-      component: () => import('../views/ThemesView.vue')
+      component: () => import('../views/themes-pages/ThemesView.vue')
     },
     {
       path: '/create-theme/:categoryId',
       name: 'Create_a_theme',
-      component: () => import('../views/CreateThemeView.vue')
+      component: () => import('../views/themes-pages/CreateThemeView.vue')
     },
     {
       path: '/cards/:themeId',
       name: 'Cards',
-      component: () => import('../views/CardsView.vue')
+      component: () => import('../views/cards-pages/CardsView.vue')
     },
     {
       path: '/create-card/:themeId',
       name: 'Create_a_card',
-      component: () => import('../views/CreateCardView.vue')
+      component: () => import('../views/cards-pages/CreateCardView.vue')
     },
     {
       path: '/select-category-revision',
       name: 'Select_category_revision',
-      component: () => import('../views/SelectCategoryRevisionView.vue')
+      component: () => import('../views/revision-pages/SelectCategoryRevisionView.vue')
     },
     {
       path: '/select-theme-revision',
       name: 'Select_theme_revision',
-      component: () => import('../views/SelectThemeRevisionView.vue')
+      component: () => import('../views/revision-pages/SelectThemeRevisionView.vue')
     },
     {
       path: '/revision',
       name: 'Revision',
-      component: () => import('../views/RevisionView.vue')
+      component: () => import('../views/revision-pages/RevisionView.vue')
     },
     {
       path: '/settings',
