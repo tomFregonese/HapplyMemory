@@ -52,25 +52,33 @@ for (const card of cardsToReviseBeforeFilter) {
       cardsToRevise.value.push(cardsToReviseBeforeFilter.find((c: Card) => c.id == card.id)!);
   }
 }
+if (cardsToRevise.value.length == 0) {
+  noCardToReviseAnymore.value = true;
+  cancelRevision()
+}
 
 function getCardById(cardId: number): Card {
-  const notFoundCard: Card = {
+
+  const defaultCard: Card = {
     id: -1,
     title: 'Card not found',
     description: 'Card not found',
     level: 0,
     completedAt: undefined
-  }
+  };
+
+  let cardFound: Card = defaultCard;
+
   dataFromLocalStorage.categories.forEach((category: Category) => {
     category.themes.forEach((theme: Theme) => {
       theme.cards.forEach((card: Card) => {
-        if (card.id === cardId) {
-          return card
+        if (cardFound === defaultCard && card.id === cardId  ) {
+          cardFound = card
         }
       })
     })
   })
-  return notFoundCard
+  return cardFound;
 }
 
 function shouldReviseCard(card: Card): boolean {
@@ -78,8 +86,8 @@ function shouldReviseCard(card: Card): boolean {
   if (!realCard.completedAt) {
     return true
   }
-  const currentDate = new Date().getDay()
-  const completedAt = new Date(realCard.completedAt!).getDay()
+  const currentDate = new Date().getTime()/(24*60*60*1000)
+  const completedAt = new Date(realCard.completedAt!).getTime()/(24*60*60*1000)
   const diffDays = currentDate - completedAt
   return diffDays >= LEVELS[realCard.level];
 }
