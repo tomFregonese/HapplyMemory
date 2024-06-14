@@ -66,14 +66,16 @@ button {
   cursor: pointer;
   border-radius: 1em;
   border: none;
+  transition: background-color 0.3s;
+}
 
-  :hover {
-    background-color: #45a049;
-  }
-  :active {
-    background-color: #3e8e41;
-  }
+button:hover {
+  background-color: #45a049;
+}
 
+button:disabled {
+  background-color: #cccccc;
+  color: #888888;
 }
 
 form {
@@ -129,6 +131,13 @@ footer {
         background-color: transparent;
       }
     }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  button:disabled {
+    background-color: #333333;
+    color: #888888;
   }
 }
 

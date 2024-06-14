@@ -70,7 +70,7 @@ function themeIdExists(data: Data, id: number): boolean {
 <template>
   <main>
     <form>
-      <input id="title" placeholder="Title" v-model="title" type="text" required>
+      <input id="title" placeholder="Title" v-model="title" type="text" autofocus required>
 
       <textarea id="description" placeholder="Description" v-model="description"></textarea>
 

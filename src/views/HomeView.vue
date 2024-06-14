@@ -17,11 +17,8 @@ if (isRevisionStarted()) {
 
 <template>
   <main>
-
     <!-- TODO add a kind avatar to give emotion to the app -->
-
     <button @click="router.push('select-category-revision')">Start revision</button>
-
     <button @click="router.push('/categories')">Categories</button>
   </main>
 </template>

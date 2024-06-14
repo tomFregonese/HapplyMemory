@@ -109,7 +109,7 @@ function cardIdExists(data: Data, id: number): boolean {
 <template>
   <main>
     <form>
-      <textarea id="title" placeholder="Question" v-model="title" required/>
+      <textarea id="title" placeholder="Question" v-model="title" autofocus required/>
 
       <textarea id="description" placeholder="Answer" v-model="description"/>
 

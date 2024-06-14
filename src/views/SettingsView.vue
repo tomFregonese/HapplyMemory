@@ -10,7 +10,7 @@ onMounted(() => {
 
 <template>
   <main>
-
+    <p>There is no settings available yet :(</p>
   </main>
 </template>
 
