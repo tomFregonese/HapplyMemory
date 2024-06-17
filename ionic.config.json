@@ -1,0 +1,7 @@
+{
+  "name": "HapplyMemoryIonicMigration",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
