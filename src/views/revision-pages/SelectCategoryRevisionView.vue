@@ -32,7 +32,9 @@ function selectCategory(category: Category) {
   <main>
     <CategoryItem v-for="category in categories" :key="category.id" @click.stop="selectCategory(category)" :id="category.id"
                   :title="category.title" :description="category.description" :revision="true"/>
-    <Back where-to-go="Home" />
+    <div class="footer">
+      <Back where-to-go="Home" />
+    </div>
   </main>
 </template>
 

@@ -50,8 +50,10 @@ function back(): void {
   <main>
     <ThemeItem v-for="theme in themes" :key="theme.id" @click.stop="selectTheme(theme)" :id="theme.id"
                   :title="theme.title" :description="theme.description" :revision="true"/>
+    <div class="footer">
     <button @click="selectCategory()">Revise the entire category</button>
     <Back @click="back" where-to-go="Select_category_revision" />
+    </div>
   </main>
 </template>
 

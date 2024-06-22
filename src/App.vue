@@ -16,9 +16,7 @@ const updateTitle = (newTitle: string) => {
     <h1>{{ title }}</h1>
   </header>
 
-  <body>
-    <RouterView @title="updateTitle" />
-  </body>
+  <RouterView @title="updateTitle" />
 
   <footer>
       <nav>
@@ -32,26 +30,27 @@ const updateTitle = (newTitle: string) => {
 <style>
 header {
   position: fixed;
-  width: 100%;
-  padding: 1rem 0;
+  top: 0;
+  padding: 5vh 10vw 0 10vw;
   left: 0; right: 0;
   text-align: center;
-  height: 15%;
+  max-height: 20vh;
+  min-height: 15vh;
+  height: max-content;
 }
 
 
 main {
+  position: absolute;
+  top: 15vh;
+  left: 0; right: 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  max-height: 75vh;
+  min-height: 75vh;
 }
 
 button {
@@ -103,35 +102,37 @@ form {
 
 footer {
   position: fixed;
-  bottom: 1em;
-  width: 100%;
-
-  line-height: 1.5;
-  max-height: 100vh;
-
-  left: 0;
+  bottom: 0;
   text-align: center;
+  height: 3.5vh;
+  margin-bottom: 1.5vh;
+  left: 0; right: 0;
 
-  height: 10%;
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
 
-  nav {
-    width: 100%;
-    font-size: 1em;
+  a {
     text-align: center;
-    margin-top: 2rem;
-    padding: 1rem 0;
-
-    a {
-      display: inline-block;
-      padding: 0 1rem;
-      border-left: 1px solid var(--color-border);
-      color: var(--color-text);
+    padding: 0 1rem;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    color: var(--color-text);
 
       :hover {
         background-color: transparent;
       }
     }
   }
+
+.footer {
+  position: fixed;
+  bottom: 5vh;
+  left: 0; right: 0;
+  text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {

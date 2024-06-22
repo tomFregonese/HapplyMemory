@@ -28,8 +28,10 @@ if (dataFromStorage) {
   <main>
     <CategoryItem v-for="category in categories" :key="category.id" :id="category.id" :title="category.title" :description="category.description"/>
 
-    <button @click="router.push('/create-category')">New category</button>
-    <Back where-to-go="Home" />
+    <div class="footer">
+      <button @click="router.push('/create-category')">New category</button>
+      <Back where-to-go="Home" />
+    </div>
   </main>
 </template>
 
