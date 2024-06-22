@@ -58,9 +58,9 @@ const categoryId = goBack();
   <main>
     <CardItem v-for="card in cardsList" :key="card.id" :id="card.id" :title="card.title"
                   :description="card.description"  />
-    <button @click="router.push({name: 'Create_a_card', params: { themeId: currentTheme.id} })">New
-      card</button>
     <div class="footer">
+      <button @click="router.push({name: 'Create_a_card', params: { themeId: currentTheme.id} })">New
+      card</button>
       <Back where-to-go="Themes" :category-id="categoryId"/>
     </div>
   </main>
