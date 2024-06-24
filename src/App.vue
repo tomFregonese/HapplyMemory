@@ -128,6 +128,12 @@ footer {
     }
   }
 
+.content {
+  bottom: 10vh;
+  left: 0; right: 0;
+  overflow: auto;
+}
+
 .footer {
   position: fixed;
   bottom: 5vh;
