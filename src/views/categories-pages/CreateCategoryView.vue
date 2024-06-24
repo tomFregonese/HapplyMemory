@@ -12,7 +12,7 @@ onMounted(() => {
 })
 
 function isFormValid() {
-  return title.value.trim() !== '' && description.value.trim() !== '';
+  return title.value.trim() !== '';
 }
 
 let title = ref('')

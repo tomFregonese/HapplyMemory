@@ -60,6 +60,7 @@ const categoryId = goBack();
       <CardItem v-for="card in cardsList" :key="card.id" :id="card.id" :title="card.title"
                   :description="card.description" />
     </div>
+    <br>
     <div class="footer">
       <button @click="router.push({name: 'Create_a_card', params: { themeId: currentTheme.id} })">New
       card</button>

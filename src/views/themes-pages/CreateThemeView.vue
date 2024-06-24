@@ -16,7 +16,7 @@ const route = useRoute()
 const categoryId : number = Number(route.params.categoryId)
 
 function isFormValid() {
-  return title.value.trim() !== '' && description.value.trim() !== '';
+  return title.value.trim() !== '';
 }
 
 let title = ref('')

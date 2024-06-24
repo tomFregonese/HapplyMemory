@@ -134,6 +134,10 @@ footer {
   overflow: auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .footer {
   position: fixed;
   bottom: 5vh;
