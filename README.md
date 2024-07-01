@@ -7,6 +7,7 @@ Pour déployer Happly Memory, il suffit de suivre les étapes ci-dessous :
 1. Clonez le dépôt sur votre machine locale en utilisant `git clone https://github.com/tomFregonese/HapplyMemory.git`. 
 2. Positionnez vous à la racine du projet et installez les dépendances avec `npm install`.
 3. Lancez l'application en mode développement avec `npm run serve`.
+4. Il est possible d'importer un jeu de données depuis la page `/settings` avec le bouton "Overwrite dataset". 
 
 
 ## Fonctionnalités
@@ -77,7 +78,7 @@ Chaque vue est organisée en deux parties : une div avec la classe `.content` qu
 ## Améliorations possibles
 - Ajouter un avatar sympatoche (à la duolingo) pour présenter les interfaces et la navigation dans l'application. 
 - À la fin d’une révision, afficher un petit récapitulatifs des questions qui ont étés justes (avec le niveau) et les 
-cartes qui ont étés fausses 
+  cartes qui ont étés fausses 
 - Ajouter un système de score pour chaque révision.
 - Ajouter la possibilité de modifier le nom et la description d'une catégorie ou d'un thème. 
 - Ajouter une confirmation de suppression pour les catégories, thèmes et cartes.
