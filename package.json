@@ -1,10 +1,11 @@
 {
-  "name": "HapplyMemoryIonicMigration",
+  "name": "happly-memory",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "devIonic": "ionic serve",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test:e2e": "cypress run",
@@ -12,9 +13,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@capacitor/android": "6.1.0",
     "@capacitor/app": "6.0.0",
     "@capacitor/core": "6.1.0",
     "@capacitor/haptics": "6.0.0",
+    "@capacitor/ios": "6.1.0",
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
     "@ionic/vue": "^8.0.0",
